@@ -43,9 +43,9 @@ containers 容器文件夹 ：存放容器组件，比如 “苹果篮子”
 
 components 组件文件夹 ：存放普通显示组件，比如 “苹果”
 
-actions actions文件夹 ：存放可以发出的action
+actions文件夹 ：存放可以发出的action
 
-reducers reducers文件夹 ：存放action的处理器reducers
+reducers文件夹 ：存放action的处理器reducers
 
 services 服务文件夹 ：存放经过封装的服务，如 ajax服务 , 模拟数据服务
 
