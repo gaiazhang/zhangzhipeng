@@ -36,7 +36,14 @@ const api = function () {
     }
 exports.get = consoleInfo(api)
 
-
+/*    var mock = mockCallback(settings);
+    if (mock) {
+      return {
+        response: mockCallback(settings)
+      }
+    } else {
+      return;
+    }*/
 
 
 
