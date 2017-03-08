@@ -19,7 +19,7 @@
 			                this.props.todo.map(function (item, i) {
 			                    return (
 			                        <li>
-			                            <label>{item}</label>
+			                            <label>{item.id}</label>
 			                            <button className="destroy" onClick={this.handleDel.bind(this)} data-key={i}>delete</button>
 			                        </li>
 			                    );
