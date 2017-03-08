@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import TypeNew from './TypeNew';
 import ListTodo from './ListTodo';
 export default class TodoList extends Component {
-
    constructor(...argu) { //定义App类的构造函数
         super(...argu); //调用父类的构造函数
         this.state = { //定义组件状态
@@ -34,6 +33,3 @@ export default class TodoList extends Component {
 			)
 	}
 }
-
-
- 
