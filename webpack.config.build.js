@@ -1,7 +1,8 @@
-var webpack = require('webpack');
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const fs = require('fs'); 
+const minify = require('html-minifier').minify;
 module.exports = {
    entry: {
     app: ['./src/index.js'],
@@ -10,7 +11,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: "/",//实际的cdn地址比如 http://www.XXX.com/
-    filename: '[hash:5].bundle.js',
+    filename: '[chunkhash:5].bundle.js',
   },
   module: {
     loaders: [{
@@ -59,6 +60,27 @@ module.exports = {
             $: "jquery",
             jQuery: "jquery",
             "window.jQuery": "jquery"
-        })
+        }),
+    new webpack.ProgressPlugin(function handler(percentage, msg) {
+        if (percentage==0) {
+            console.log('开始编译');
+        }
+        if (percentage==1) {
+            console.log('结束编译');
+            fs.readFile(__dirname + '/dist/index.html', 'utf-8', function(err, data) {
+                if (err) {
+                    throw new Error('读取编译译后的 HTML 文件失败...');
+                }
+                //const newData = data.replace(/src\//g, ''); 
+                const reg = /<script src=\"([a-zA-Z]|\/)*\.?[a-zA-Z]*\"><\/script>/ig;
+                const newData =  data.replace(reg,'');
+                fs.writeFile(__dirname + '/dist/index.html',minify(newData,{removeComments: true,collapseWhitespace: true,minifyJS:false, minifyCSS:false}), function(err) {
+                    if (err) {
+                        throw new Error('修改编译后的 HTML 文件失败...');
+                    }
+                });
+            });
+        }
+    })
   ]
 };

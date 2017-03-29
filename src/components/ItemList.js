@@ -1,10 +1,31 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { itemsFetchData } from '../actions/items';
-
+import 'whatwg-fetch'  // 可以引入fetch来进行Ajax
 class ItemList extends Component {
     componentDidMount() {
         this.props.fetchData('http://5826ed963900d612000138bd.mockapi.io/items');
+/*        fetch('http://es.xiaojukeji.com/gaea/member/search?page_index=1&page_size=20&_=1490672624488')
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw Error(response.statusText);
+                        }
+
+                        console.log("1313213")
+
+                       
+                    })*/
+/*        $.ajax({
+            url: 'http://es.xiaojukeji.com/gaea/member/search?page_index=1&page_size=20&_=1490672624488',
+            dataType:'jsonp'
+        })
+        .done(function() {
+            console.log("success");
+        })*/
+       
+
+                   
+
     }
 
     render() {

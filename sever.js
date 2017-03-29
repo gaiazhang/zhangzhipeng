@@ -2,13 +2,13 @@ const app = require('koa')();
 const webpack = require('webpack');
 const path = require('path');
 const serve = require('koa-static')
-//const proxy = require('koa-proxy');
+const proxy = require('koa-proxy');
 const devMiddleware = require("koa-webpack-dev-middleware");
 const hotMiddleware = require("koa-webpack-hot-middleware");
 const chalk = require('chalk')
 const devConfig = require ('./webpack.config')
     devConfig.entry.app.unshift('webpack-hot-middleware/client?reload=true');//这里reload=true的意思是，如果碰到不能hot reload的情况，就整页刷新。
-
+const fs = require('fs');  
 const router = require('koa-frouter')
 const bodyParser = require('koa-bodyparser')
 
@@ -18,9 +18,9 @@ const ip = config.get('ip')
 const port = config.get('port')
 
 
-var debug = process.env.NODE_ENV !== 'production';
+const debug = process.env.NODE_ENV !== 'production';
 // 开发环境和生产环境对应不同的目录
-var viewDir = debug ? 'src' : 'dist';
+const viewDir = debug ? 'src' : 'dist';
 
 console.log( process.env.NODE_ENV,'process.env.NODE_ENV')
 
@@ -53,7 +53,7 @@ app.use(serve(path.resolve(__dirname, viewDir), {
 app.use(router(app, './mock/api'))
 
 
-
+//
 app.listen(port, ip, function(err) {
     if (err) {
         console.log(err);
