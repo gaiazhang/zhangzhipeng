@@ -61,7 +61,7 @@ module.exports = {
             jQuery: "jquery",
             "window.jQuery": "jquery"
         }),
-    new webpack.ProgressPlugin(function handler(percentage, msg) {
+    new webpack.ProgressPlugin(function handler(percentage, msg) {//webpack编译过程插件
         if (percentage==0) {
             console.log('开始编译');
         }
