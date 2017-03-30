@@ -55,7 +55,7 @@ module.exports = {
             $: "jquery",
             jQuery: "jquery",
             "window.jQuery": "jquery"
-        }),
-     new OpenBrowserPlugin({url: 'http://' + ip + ':' + port }) //自动打开游览器
+        })/*,
+     new OpenBrowserPlugin({url: 'http://' + ip + ':' + port })*/ //自动打开游览器
   ]
 };
