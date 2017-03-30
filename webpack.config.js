@@ -1,6 +1,10 @@
-var webpack = require('webpack');
-var path = require('path');
-//var HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const config = require('config')
+
+const ip = config.get('ip')
+const port = config.get('port')
 
 module.exports = {
    entry: {
@@ -51,6 +55,7 @@ module.exports = {
             $: "jquery",
             jQuery: "jquery",
             "window.jQuery": "jquery"
-        })
+        }),
+     new OpenBrowserPlugin({url: 'http://' + ip + ':' + port }) //自动打开游览器
   ]
 };
